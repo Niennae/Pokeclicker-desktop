@@ -1,32 +1,35 @@
 {
   "name": "pokeclicker-desktop",
-  "version": "1.2.0",
-  "description": "PokeClicker Desktop",
+  "version": "1.1.0",
+  "description": "PokeClicker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RedSparr0w/Pokeclicker-desktop.git"
+    "url": "https://github.com/Niennae/Pokeclicker-desktop.git"
   },
   "main": "src/main.js",
   "scripts": {
     "start": "electron ./",
     "dist:32": "electron-builder --ia32",
-    "dist:64": "electron-builder --x64 -c.artifactName=${productName}-64bit-setup-${version}.${ext}",
-    "win": "electron-builder --windows portable",
+    "dist:64": "electron-builder --x64 -c.artifactName=${name}-64bit-setup-${version}.${ext} --publish=never",
+    "win": "electron-builder --windows portable -c.artifactName=${name}-portable-${version}.${ext} --publish=never",
+    "linux:arm64": "electron-builder --linux deb rpm --arm64 --publish=never",
+    "linux:x64": "electron-builder --linux deb rpm --x64 --publish=never",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
-    "name": "RedSparr0w",
-    "email": "desktop@pokeclicker.com"
+    "name": "RedSparr0w (adding rpm packaged based on Farigh pokeclicker desktop app with scripts)",
+    "email": "dont@contact.com"
   },
   "license": "ISC",
   "dependencies": {
     "adm-zip": "^0.5.9",
     "discord-rpc": "^4.0.1",
-    "electron-updater": "^5.3.0"
+    "w3c-xmlhttprequest": "^3.0.4",
+    "electron-updater": "^5.2.1"
   },
   "devDependencies": {
-    "electron": "^21.3.1",
-    "electron-builder": "^23.6.0"
+    "electron": "^19.0.10",
+    "electron-builder": "^23.3.3"
   },
   "build": {
     "productName": "PokéClicker",
@@ -35,12 +38,11 @@
       "allowToChangeInstallationDirectory": true
     },
     "win": {
-      "requestedExecutionLevel": "highestAvailable"
+      "requestedExecutionLevel": "asInvoker"
     },
     "linux": {
       "category": "Game",
-      "icon": "icon_512x512.png",
-      "target": "deb"
+      "icon": "icon_512x512.png"
     },
     "deb": {},
     "appId": "pokeclicker.desktop"
