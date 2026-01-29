@@ -1,0 +1,23 @@
+name: Publish CI
+
+on:
+    workflow_dispatch:
+
+jobs:
+    linux-build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v6
+            - name: Use Node.js
+              uses: actions/setup-node@v6
+              with:
+                node-version: 24
+
+            - name: Install Node.js dependencies
+              run: npm ci
+
+            - name: Build linux arm64 and x64
+              run: npm run-script linux-publish
+              env:
+                GH_TOKEN: ${{ secrets.github_token }}
