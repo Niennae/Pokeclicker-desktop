@@ -9,11 +9,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron ./",
-    "dist:32": "electron-builder --ia32",
-    "dist:64": "electron-builder --x64 -c.artifactName=${name}-64bit-setup-${version}.${ext} --publish=never",
-    "win": "electron-builder --windows portable -c.artifactName=${name}-portable-${version}.${ext} --publish=never",
-    "linux:arm64": "electron-builder --linux deb rpm --arm64 --publish=never",
-    "linux:x64": "electron-builder --linux deb rpm --x64 --publish=never",
+    "linux": "electron-builder --linux deb rpm --arm64 --x64 --publish=never",
+    "linux-publish": "electron-builder --linux deb rpm --arm64 --x64 --publish=always",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -22,23 +19,20 @@
   },
   "license": "ISC",
   "dependencies": {
-    "adm-zip": "^0.5.9",
+    "adm-zip": "^0.5.16",
     "discord-rpc": "^4.0.1",
     "w3c-xmlhttprequest": "^3.0.4",
-    "electron-updater": "^5.2.1"
+    "electron-updater": "^6.8.1"
   },
   "devDependencies": {
-    "electron": "^19.0.10",
-    "electron-builder": "^23.3.3"
+    "electron": "^40.0.0",
+    "electron-builder": "^26.6.0"
   },
   "build": {
     "productName": "PokéClicker",
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
-    },
-    "win": {
-      "requestedExecutionLevel": "asInvoker"
     },
     "linux": {
       "category": "Game",
