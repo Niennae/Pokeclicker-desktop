@@ -8,32 +8,6 @@ on:
         branches: [ "master" ]
 
 jobs:
-    windows-build:
-        runs-on: windows-latest
-
-        steps:
-            - uses: actions/checkout@v6
-            - name: Use Node.js
-              uses: actions/setup-node@v6
-              with:
-                node-version: 24
-
-            - name: Install Node.js dependencies
-              run: npm ci
-
-            - name: Build windows setup
-              run: npm run-script win
-
-            - name: Build windows portable
-              run: npm run-script win-portable
-
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v5
-              with:
-                name: windows-artifacts
-                path: |
-                  dist/pokeclicker-desktop-*.exe
-
     linux-build:
         runs-on: ubuntu-latest
 
